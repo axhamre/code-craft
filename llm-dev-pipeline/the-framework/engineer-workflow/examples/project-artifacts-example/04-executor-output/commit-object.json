@@ -1,0 +1,16 @@
+{
+  "repo": "example-repo",
+  "branch": "main",
+  "commit_message": "Initial widget feature",
+  "files_changed": [
+    {
+      "path": "src/widget.py",
+      "change_type": "added",
+      "diff_summary": "Add widget class"
+    }
+  ],
+  "metadata": {
+    "timestamp": "2025-05-22T10:00:00Z",
+    "author": "example-author"
+  }
+}
