@@ -1,39 +1,41 @@
-# LLM development pipeline
+# CodeCraft
 
 **Build software features systematically using LLMs.**
 
 Transform requirements into working code through a structured 4-step process:
 1. **Specify** - Write what you want to build
-2. **Plan** - Generate detailed implementation steps  
-3. **Execute** - Let LLM implement the plan
+2. **Plan** - Architect creates detailed implementation steps  
+3. **Execute** - Builder implements the code
 4. **Verify** - Test and validate the results
 
 ## Get started
 
 ```bash
 # Start building your first feature in 2 minutes
-open the-framework/QUICKSTART.md
+open framework/QUICKSTART.md
 ```
 
 ## Framework structure
 
 ```
-the-framework/
+framework/
 ├── QUICKSTART.md           # ← Start here
 ├── templates/              # Prompt templates for each step
 ├── examples/               # Working example project to copy
 ├── runtime-llms/           # LLM guides and schemas
+│   ├── architect/          # Creates specifications and plans
+│   └── builder/            # Implements plans and commits code
 └── guides/                 # Detailed documentation
 ```
 
 ## Two LLM roles
 
-- **GeneratorLLM** - Creates specifications and plans from requirements
-- **ExecutorLLM** - Implements plans and commits code changes
+- **Architect** - Creates specifications and plans from requirements
+- **Builder** - Implements plans and commits code changes
 
 Each LLM has specific prompts, guidelines, and output schemas to ensure consistency.
 
 ---
 
-**Ready to build?** → Open `the-framework/QUICKSTART.md` and copy your first project structure.
+**Ready to build?** → Open `framework/QUICKSTART.md` and copy your first project structure.
 
