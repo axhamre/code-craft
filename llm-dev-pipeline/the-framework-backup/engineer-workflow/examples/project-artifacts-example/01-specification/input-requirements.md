@@ -1,1 +1,0 @@
-Placeholder example requirement: *the system shall allow users to manage widgets via a web UI*.
