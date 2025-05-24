@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 – 2024-12-11
+## 1.0.0 – 2025-05-24
 
 ### 🎉 Major Release: CodeCraft v1.0
 
@@ -32,7 +32,7 @@
 
 ---
 
-## 0.8.0 – 2024-12-10
+## 0.8.0 – 2025-05-24
 
 ### Fixed
 * **framework structure alignment**: updated all path references in engineer guide to match current directory structure (`framework/runtime-llms/architect|builder/`)
