@@ -1,4 +1,24 @@
-# changelog
+# Changelog
+
+## 0.8.0 – 2025-05-25
+
+### Fixed
+* **framework structure alignment**: updated all path references in engineer guide to match current directory structure (`framework/runtime-llms/architect|builder/`)
+* **role terminology consistency**: standardized all references to use "Architect" and "Builder" (removed GeneratorLLM/ExecutorLLM inconsistency)
+* **workflow gaps**: removed JSON schema dependencies, replaced with markdown format specifications throughout
+* **missing QUICKSTART.md**: created comprehensive quickstart guide with step-by-step workflow
+
+### Changed
+* **system prompts**: updated to use "Architect"/"Builder" terminology and expect markdown input/output
+* **guidelines**: replaced JSON schemas with markdown format specifications for tech specs and implementation plans
+* **templates**: updated all prompt templates to reference correct paths and use proper role terminology
+* **protocol**: simplified builder protocol to work with markdown plans instead of JSON
+
+### Removed
+* **JSON schemas**: deleted all schema files (`tech-spec.schema.json`, `impl-plan.schema.json`, `commit-object.schema.json`)
+* **FrameworkLLM references**: removed mentions of non-existent coordination component
+* **shared/schemas directory**: cleaned up unused schema infrastructure
+
 ## 0.7.0 – 2025-05-23
 
 # changelog
