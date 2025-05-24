@@ -1,41 +1,44 @@
-# CodeCraft
+# DevFlow
 
-**Build software features systematically using LLMs.**
+**Transform requirements into working software using structured LLM workflows.**
 
-Transform requirements into working code through a structured 4-step process:
-1. **Specify** - Write what you want to build
-2. **Plan** - Architect creates detailed implementation steps  
-3. **Execute** - Builder implements the code
-4. **Verify** - Test and validate the results
+DevFlow is a framework for **AI-assisted software development** that uses specialized LLM agents to create structured, verifiable implementations.
 
-## Get started
+## Workflow
 
-```bash
-# Start building your first feature in 2 minutes
-open framework/QUICKSTART.md
+1. **Specify** - Planner converts requirements → technical specifications  
+2. **Plan** - Planner creates detailed implementation steps
+3. **Execute** - Coder implements the code
+4. **Verify** - Test and validate the implementation
+
+## Quick start
+
+See `QUICKSTART.md` for a 2-minute setup guide.
+
+## Directory structure
+
+```
+DevFlow/
+├── framework/               # Core LLM agents
+│   ├── planner/            # Creates specifications and plans
+│   ├── coder/              # Implements plans and commits code
+│   └── global-llm-rules.md # Style and formatting rules
+├── templates/               # Prompt templates
+├── examples/                # Reference implementations  
+├── guides/                  # Detailed workflows
+└── QUICKSTART.md           # Get started quickly
 ```
 
-## Framework structure
+## Key components
 
-```
-framework/
-├── QUICKSTART.md           # ← Start here
-├── templates/              # Prompt templates for each step
-├── examples/               # Working example project to copy
-├── runtime-llms/           # LLM guides and schemas
-│   ├── architect/          # Creates specifications and plans
-│   └── builder/            # Implements plans and commits code
-└── guides/                 # Detailed documentation
-```
+- **Planner** - Creates specifications and plans from requirements
+- **Coder** - Implements plans and commits code changes
+- **Templates** - Starting prompts for different phases
+- **Examples** - Complete reference projects
 
-## Two LLM roles
+## Documentation
 
-- **Architect** - Creates specifications and plans from requirements
-- **Builder** - Implements plans and commits code changes
-
-Each LLM has specific prompts, guidelines, and output schemas to ensure consistency.
-
----
-
-**Ready to build?** → Open `framework/QUICKSTART.md` and copy your first project structure.
+- `QUICKSTART.md` - Get productive in 2 minutes
+- `guides/engineer-workflow.md` - Complete workflow guide
+- `examples/` - Reference implementations
 

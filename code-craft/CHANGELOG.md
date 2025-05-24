@@ -1,5 +1,38 @@
 # Changelog
 
+## 1.0.0 – 2024-12-11
+
+### 🎉 Major Release: DevFlow
+
+**Framework completely restructured and rebranded for production use.**
+
+### Added
+* **DevFlow branding**: Complete rebrand from CodeCraft to DevFlow with professional naming
+* **Simplified directory structure**: Moved from `framework/runtime-llms/architect|builder/` to clean `framework/planner/` and `framework/coder/`
+* **Consolidated guidelines**: Single `framework/planner/guidelines.md` containing both spec and plan generation
+* **New QUICKSTART.md**: Complete rewrite with 4-step workflow for 2-minute setup
+* **Engineer workflow guide**: Comprehensive `guides/engineer-workflow.md` with step-by-step instructions
+* **Combined workflow template**: Single LLM option for simpler projects
+
+### Changed
+* **Role terminology**: Architect → Planner, Builder → Coder throughout framework
+* **System prompts**: Updated to use Planner/Coder terminology and correct paths
+* **Directory organization**: Moved templates, examples, guides to root level for easier access
+* **Documentation**: All guides, templates, and examples updated with consistent terminology
+* **Path references**: Updated all framework paths to use new simplified structure
+
+### Removed
+* **runtime-llms directory**: Eliminated confusing nested structure
+* **Duplicate documentation**: Cleaned up inconsistent and outdated guides
+* **Old terminology**: Removed all Architect/Builder references
+
+### Fixed
+* **Structural inconsistencies**: All path references now align with actual directory structure
+* **Terminology mismatches**: Consistent Planner/Coder usage throughout
+* **Outdated documentation**: Removed and replaced obsolete guides and quickstarts
+
+---
+
 ## 0.8.0 – 2025-05-25
 
 ### Fixed
