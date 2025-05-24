@@ -54,7 +54,6 @@ Refer to the main `README.md` for LLM role definitions.
 *   **LLM-Specific Guides & Protocols:**
     *   `GeneratorLLM`: `runtime-llms/generator-llm/` (main guide & output guidelines)
     *   `ExecutorLLM`: `runtime-llms/executor-llm/` (main guide & protocol)
-    *   `FrameworkLLM` (for framework development): `framework-llm/framework-llm-collaboration-guide.md`
 *   **Prompt Templates:** `engineer-workflow/templates/` (organized by phase: `specification/`, `planning/`, `verification/`)
 *   **Example Project Artifacts:** `project-artifacts-example/` (shows structure for `01-specification/`, `02-planned-development/`, `03-verification/`)
 
@@ -71,9 +70,6 @@ This outlines the key components of the `llm-dev-pipeline` framework itself.
 │
 ├── engineer-workflow/
 │   ├── engineer-guide.md
-│   │
-│   ├── framework-dev/
-│   │   └── framework-llm-collaboration-guide.md
 │   │
 │   ├── generator-llm/
 │   │   ├── generator-llm-guide.md
@@ -108,11 +104,10 @@ This outlines the key components of the `llm-dev-pipeline` framework itself.
 
 **Understanding the Structure:**
 
-*   **`README.md` (Root):** Your first stop. Explains `llm-dev-pipeline`'s purpose, defines the LLM roles (`FrameworkLLM`, `GeneratorLLM`, `ExecutorLLM`), and points you to this `engineer-guide.md`.
+*   **`README.md` (Root):** Your first stop. Explains `llm-dev-pipeline`'s purpose, defines the LLM roles (`GeneratorLLM`, `ExecutorLLM`), and points you to this `engineer-guide.md`.
 *   **`global-llm-rules.md` (Root):** Universal content rules for all LLM-generated text.
 *   **`engineer-workflow/`**: The knowledge hub.
     *   This `engineer-guide.md` is your primary operational manual.
-    *   `framework-dev/` details how `llm-dev-pipeline` itself is designed and developed, including how `FrameworkLLM` (the LLM assisting in framework creation) collaborates.
     *   `generator-llm/` contains the main guide for `GeneratorLLM` and the crucial `*-generation-guidelines.md` files that define the *required structure* for documents like technical specifications and implementation plans.
     *   `executor-llm/` provides the guide and the strict `executor-llm-protocol.md` that `ExecutorLLM` follows to implement changes.
 *   **`engineer-workflow/templates/`**: A library of starting prompts. You'll copy and customize these for your specific project tasks before `GeneratorLLM` uses them. They are organized by the development phase they support.
