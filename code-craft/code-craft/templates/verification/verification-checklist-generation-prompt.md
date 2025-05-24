@@ -37,4 +37,4 @@ Use specific, measurable criteria that can be verified through testing, inspecti
 
 ---
 
-*(Planner: Generate the verification checklist here.)*
+*(Planner: Generate the verification checklist here.)* 

@@ -31,6 +31,4 @@ The specification must include:
 
 ---
 
-*(Planner: Populate the rest of the technical specification here, following the guidelines.)*
-
-
+*(Planner: Populate the rest of the technical specification here, following the guidelines.)* 
