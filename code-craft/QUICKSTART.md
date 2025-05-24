@@ -1,10 +1,10 @@
-# DevFlow quickstart
+# CodeCraft quickstart
 
-**Get productive with DevFlow in 2 minutes.** Transform requirements into working software using structured LLM workflows.
+**Get productive with CodeCraft in 2 minutes.** Transform requirements into working software using structured LLM workflows.
 
-## What is DevFlow?
+## What is CodeCraft?
 
-DevFlow is a framework for structured software development using LLMs. It uses two specialized agents:
+CodeCraft is a framework for structured software development using LLMs. It uses two specialized agents:
 - **Planner:** Converts requirements → technical specifications → implementation plans
 - **Coder:** Executes implementation plans → verified code commits
 
@@ -14,7 +14,7 @@ DevFlow is a framework for structured software development using LLMs. It uses t
 # 1. Clone and navigate to your project
 git init my-project && cd my-project
 
-# 2. Set up DevFlow structure
+# 2. Set up CodeCraft structure
 mkdir 01-specification 02-plan 03-implementation
 ```
 
@@ -99,4 +99,4 @@ cat templates/combined-workflow.md
 
 ---
 
-**Next:** Browse `examples/` to see DevFlow in action, or dive into `guides/engineer-workflow.md` for comprehensive instructions. 
+**Next:** Browse `examples/` to see CodeCraft in action, or dive into `guides/engineer-workflow.md` for comprehensive instructions. 

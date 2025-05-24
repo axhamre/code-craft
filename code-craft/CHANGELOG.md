@@ -2,12 +2,11 @@
 
 ## 1.0.0 – 2024-12-11
 
-### 🎉 Major Release: DevFlow
+### 🎉 Major Release: CodeCraft v1.0
 
-**Framework completely restructured and rebranded for production use.**
+**Framework restructured for production use with improved terminology and simplified structure.**
 
 ### Added
-* **DevFlow branding**: Complete rebrand from CodeCraft to DevFlow with professional naming
 * **Simplified directory structure**: Moved from `framework/runtime-llms/architect|builder/` to clean `framework/planner/` and `framework/coder/`
 * **Consolidated guidelines**: Single `framework/planner/guidelines.md` containing both spec and plan generation
 * **New QUICKSTART.md**: Complete rewrite with 4-step workflow for 2-minute setup

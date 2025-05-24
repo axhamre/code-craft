@@ -1,8 +1,8 @@
-# DevFlow
+# CodeCraft
 
 **Transform requirements into working software using structured LLM workflows.**
 
-DevFlow is a framework for **AI-assisted software development** that uses specialized LLM agents to create structured, verifiable implementations.
+CodeCraft is a framework for **AI-assisted software development** that uses specialized LLM agents to create structured, verifiable implementations.
 
 ## Workflow
 
@@ -18,7 +18,7 @@ See `QUICKSTART.md` for a 2-minute setup guide.
 ## Directory structure
 
 ```
-DevFlow/
+CodeCraft/
 ├── framework/               # Core LLM agents
 │   ├── planner/            # Creates specifications and plans
 │   ├── coder/              # Implements plans and commits code
