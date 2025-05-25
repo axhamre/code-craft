@@ -28,37 +28,37 @@ cd codecraft
 
 ```bash
 # Load Planner
-cat framework/planner/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
 
 # Provide context
-cat framework/planner/guidelines.md
-cat framework/global-llm-rules.md
+cat codecraft/framework/planner/guidelines.md
+cat codecraft/framework/global-llm-rules.md
 
-# Submit requirements → Save output as 01-specification/technical-specification.md
+# Submit requirements → Save output as codecraft/01-specification/technical-specification.md
 ```
 
 ### 2. Technical specification → Implementation plan
 
 ```bash
 # Continue with Planner or reload
-cat 01-specification/technical-specification.md
+cat codecraft/01-specification/technical-specification.md
 
 # Ask Planner to generate implementation plan
-# Save output as 02-plan/implementation-plan.md
+# Save output as codecraft/02-plan/implementation-plan.md
 ```
 
 ### 3. Implementation plan → Code
 
 ```bash
 # Load Coder  
-cat framework/coder/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/framework/coder/SYSTEM_PROMPT.md | pbcopy
 
 # Provide context
-cat framework/coder/protocol.md
-cat framework/global-llm-rules.md
+cat codecraft/framework/coder/protocol.md
+cat codecraft/framework/global-llm-rules.md
 
 # Submit implementation plan
-cat 02-plan/implementation-plan.md
+cat codecraft/02-plan/implementation-plan.md
 
 # Coder executes tasks and commits changes
 ```
@@ -77,11 +77,11 @@ For simple projects, use one Planner session for both specification and plan:
 
 ```bash
 # Load combined workflow template
-cat framework/planner/SYSTEM_PROMPT.md | pbcopy
-cat templates/combined-workflow.md
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/templates/combined-workflow.md
 
 # Submit requirements → Get both spec and plan
-# Save spec to 01-specification/, plan to 02-plan/
+# Save spec to codecraft/01-specification/, plan to codecraft/02-plan/
 # Proceed to step 3 (Coder)
 ```
 
@@ -92,15 +92,15 @@ cat templates/combined-workflow.md
 - `examples/todo-app/` - Full web application with CRUD
 
 **Templates:**
-- `templates/input-requirements.md` - How to format requirements
-- `templates/combined-workflow.md` - Single LLM workflow
+- `codecraft/templates/input-requirements.md` - How to format requirements
+- `codecraft/templates/combined-workflow.md` - Single LLM workflow
 
 ## Need more detail?
 
-- **Full guide:** `guides/engineer-workflow.md`
-- **Framework docs:** `framework/` directory
+- **Full guide:** `codecraft/guides/engineer-workflow.md`
+- **Framework docs:** `codecraft/framework/` directory
 - **Troubleshooting:** Check examples for reference implementations
 
 ---
 
-**Next:** Browse `examples/` to see CodeCraft in action, or dive into `guides/engineer-workflow.md` for comprehensive instructions. 
+**Next:** Browse `codecraft/examples/` to see CodeCraft in action, or dive into `codecraft/guides/engineer-workflow.md` for comprehensive instructions. 

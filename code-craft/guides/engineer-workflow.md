@@ -30,17 +30,17 @@ cd codecraft
 
 ```bash
 # 1. Set up the Planner
-cat framework/planner/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
 
 # 2. Provide context files
-cat framework/planner/guidelines.md
-cat framework/global-llm-rules.md
+cat codecraft/framework/planner/guidelines.md
+cat codecraft/framework/global-llm-rules.md
 
 # 3. Submit your requirements
 # Paste your project requirements to the LLM
 
 # 4. Save the output
-# Copy the generated specification to 01-specification/technical-specification.md
+# Copy the generated specification to codecraft/01-specification/technical-specification.md
 ```
 
 ### Phase 2: Technical specification to implementation plan
@@ -51,16 +51,16 @@ cat framework/global-llm-rules.md
 
 ```bash
 # 1. Continue with same Planner session or setup new one
-cat framework/planner/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
 
 # 2. Provide the tech spec
-cat 01-specification/technical-specification.md
+cat codecraft/01-specification/technical-specification.md
 
 # 3. Request implementation plan generation
 # Ask the LLM to generate an implementation plan based on the spec
 
 # 4. Save the output  
-# Copy the generated plan to 02-plan/implementation-plan.md
+# Copy the generated plan to codecraft/02-plan/implementation-plan.md
 ```
 
 ### Phase 3: Implementation plan execution
@@ -71,14 +71,14 @@ cat 01-specification/technical-specification.md
 
 ```bash
 # 1. Set up the Coder
-cat framework/coder/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
+cat codecraft/framework/coder/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
 
 # 2. Provide context files
-cat framework/coder/protocol.md
-cat framework/global-llm-rules.md
+cat codecraft/framework/coder/protocol.md
+cat codecraft/framework/global-llm-rules.md
 
 # 3. Provide the implementation plan
-cat 02-plan/implementation-plan.md
+cat codecraft/02-plan/implementation-plan.md
 
 # 4. Execute tasks
 # The Coder will implement each task, verify completion, and commit changes
@@ -105,12 +105,12 @@ npm start   # or appropriate start command
 ## Templates and examples
 
 **Starter templates:**
-- `templates/input-requirements.md` - Format for project requirements
-- `templates/combined-workflow.md` - Single LLM workflow template
+- `codecraft/templates/input-requirements.md` - Format for project requirements
+- `codecraft/templates/combined-workflow.md` - Single LLM workflow template
 
 **Reference examples:**
-- `examples/todo-app/` - Simple web application
-- `examples/counter-app/` - Basic interactive component
+- `codecraft/examples/todo-app/` - Simple web application
+- `codecraft/examples/counter-app/` - Basic interactive component
 
 ## Advanced workflows
 
@@ -119,8 +119,8 @@ For simpler projects, use one Planner session to generate both specification and
 
 ```bash
 # 1. Setup Planner with combined workflow template
-cat framework/planner/SYSTEM_PROMPT.md | pbcopy
-cat templates/combined-workflow.md
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/templates/combined-workflow.md
 
 # 2. Submit requirements and request both spec and plan
 # The LLM will generate both documents in sequence
@@ -140,11 +140,11 @@ For complex projects requiring multiple cycles:
 ### Common issues
 
 **Planner outputs incorrect format:**
-- Check that `framework/planner/guidelines.md` was provided as context
+- Check that `codecraft/framework/planner/guidelines.md` was provided as context
 - Verify the requirements are clear and detailed
 
 **Coder skips verification steps:**  
-- Ensure `framework/coder/protocol.md` was provided as context
+- Ensure `codecraft/framework/coder/protocol.md` was provided as context
 - Check that verification criteria in the plan are specific and testable
 
 **Dependency/tool errors:**
