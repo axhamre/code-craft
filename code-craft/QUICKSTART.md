@@ -1,6 +1,6 @@
 # CodeCraft quickstart
 
-**Get productive with CodeCraft in 2 minutes.** Transform requirements into working software using structured LLM workflows.
+**Get productive with CodeCraft in 2 minutes.** Embed structured LLM workflows into your existing projects for new features, bug fixes, or refactoring.
 
 ## What is CodeCraft?
 
@@ -11,11 +11,15 @@ CodeCraft is a framework for structured software development using LLMs. It uses
 ## Quick setup
 
 ```bash
-# 1. Clone and navigate to your project
-git init my-project && cd my-project
+# 1. Navigate to your existing project
+cd your-existing-project
 
-# 2. Set up CodeCraft structure
-mkdir 01-specification 02-plan 03-implementation
+# 2. Clone CodeCraft and run setup
+git clone https://github.com/your-org/code-craft.git /tmp/code-craft
+/tmp/code-craft/setup.sh
+
+# 3. Start working
+cd codecraft
 ```
 
 ## 4-step workflow

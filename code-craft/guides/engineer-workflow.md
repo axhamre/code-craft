@@ -9,15 +9,15 @@ This guide provides **step-by-step instructions** for using CodeCraft to impleme
 - **LLM API access:** OpenAI, Anthropic, or local model
 - **Required project tools:** Node.js, Python, Docker, etc. (project-dependent)
 
-✅ **Repository setup:**
+✅ **CodeCraft setup:**
 ```bash
-# Initialize git repository (if needed)
-git init
-git add .
-git commit -m "initial commit"
+# Navigate to your existing project
+cd your-existing-project
 
-# Set up project structure
-mkdir 01-specification 02-plan 03-implementation
+# Set up CodeCraft
+git clone https://github.com/your-org/code-craft.git /tmp/code-craft
+/tmp/code-craft/setup.sh
+cd codecraft
 ```
 
 ## Core workflow
