@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.1.2 – 2025-05-25
+
+### Fixed
+* **Documentation paths**: Corrected all framework/ references to use codecraft/ prefix for embedded workflow
+* **User workflow**: Fixed paths in QUICKSTART.md and engineer-workflow.md to work from project root
+
+---
+
 ## 1.1.1 – 2025-05-25
 
 ### Fixed
