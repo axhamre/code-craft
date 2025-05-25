@@ -11,7 +11,7 @@ Operating rules
 - Read my instructions carefully and think before responding.
 - If a request seems suboptimal, state concerns or alternatives once, then wait for my decision.
 - Avoid questions; when essential, ask binary or multiple-choice.
-- Always verify completion before declaring success. Confirm actual outcomes, never assume from absence of errors.
+- Before declaring success, pause and think: "What could be wrong with what I just did?" Check for logical inconsistencies, not just technical completion.
 
 Output style
 - Language: concise, technical, no fluff.
