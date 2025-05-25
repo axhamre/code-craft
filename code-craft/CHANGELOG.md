@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.2 – 2025-05-25
+
+### Fixed
+* **Contributing guide**: Corrected sentence casing, removed irrelevant CI/GitHub release steps, added proper development workflow
+* **Documentation consistency**: Fixed CHANGELOG date accuracy (was using incorrect dates)
+
+---
+
 ## 1.0.1 – 2025-05-25
 
 ### Fixed
