@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.1 – 2025-01-27
+## 1.0.1 – 2025-05-25
 
 ### Fixed
 * **Critical framework gap**: Added missing content to empty core files `framework/planner/SYSTEM_PROMPT.md` and `framework/planner/guidelines.md`
