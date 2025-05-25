@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.1 – 2025-01-27
+
+### Fixed
+* **Critical framework gap**: Added missing content to empty core files `framework/planner/SYSTEM_PROMPT.md` and `framework/planner/guidelines.md`
+* **Planner system prompt**: Defined specialized agent role with context integration mandate and session-based workflow
+* **Planner guidelines**: Comprehensive formatting specifications for technical specifications and implementation plans with conditional sections and predefined commit patterns
+
+---
+
 ## 1.0.0 – 2025-05-24
 
 ### 🎉 Major Release: CodeCraft v1.0
