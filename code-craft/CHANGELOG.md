@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.4 – 2025-05-25
+## 1.1.1 – 2025-05-25
 
 ### Fixed
 * **Contributing guide**: Added semantic versioning guidelines to release process
