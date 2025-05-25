@@ -1,4 +1,5 @@
 
 
-- Update CONTRIBUTING
-- Clarify Quick setup in QUICKSTART
+- [] Update CONTRIBUTING
+- [] Clarify Quick setup in QUICKSTART
+- [] Check quality of coder and planner
