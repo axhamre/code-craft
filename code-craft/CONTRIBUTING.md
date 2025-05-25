@@ -19,5 +19,4 @@
 
 1. Update `CHANGELOG.md` with current date (YYYY-MM-DD format)
 2. Commit with message `chore(release): vX.Y.Z`
-3. Create release on GitHub
 
