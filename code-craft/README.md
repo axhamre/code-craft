@@ -13,7 +13,14 @@ CodeCraft is a framework for **AI-assisted software development** that uses spec
 
 ## Quick start
 
-See `QUICKSTART.md` for a 2-minute setup guide.
+```bash
+# In your existing project directory
+git clone https://github.com/your-org/code-craft.git /tmp/code-craft
+/tmp/code-craft/setup.sh
+cd codecraft
+```
+
+See `QUICKSTART.md` for complete workflow instructions.
 
 ## Directory structure
 

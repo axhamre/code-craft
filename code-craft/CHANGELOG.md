@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.3 – 2025-05-25
+
+### Added
+* **Setup script**: Added `setup.sh` to copy essential CodeCraft files into existing projects
+* **Existing project workflow**: Updated all documentation to support embedding CodeCraft into ongoing projects
+
+### Changed
+* **QUICKSTART.md**: Rewritten for existing project integration instead of greenfield development
+* **README.md**: Added quick setup commands for existing projects
+* **Engineer workflow guide**: Updated setup instructions for existing project context
+
+---
+
 ## 1.0.2 – 2025-05-25
 
 ### Fixed
