@@ -18,5 +18,6 @@
 ## Release process
 
 1. Update `CHANGELOG.md` with current date (YYYY-MM-DD format)
-2. Commit with message `chore(release): vX.Y.Z`
+2. Use semantic versioning: patch (0.0.X) for fixes, minor (0.X.0) for new features, major (X.0.0) for breaking changes
+3. Commit with message `chore(release): vX.Y.Z`
 

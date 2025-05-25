@@ -1,6 +1,13 @@
 # Changelog
 
-## 1.0.3 – 2025-05-25
+## 1.0.4 – 2025-05-25
+
+### Fixed
+* **Contributing guide**: Added semantic versioning guidelines to release process
+
+---
+
+## 1.1.0 – 2025-05-25
 
 ### Added
 * **Setup script**: Added `setup.sh` to copy essential CodeCraft files into existing projects
