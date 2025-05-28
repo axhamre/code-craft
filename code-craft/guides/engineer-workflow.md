@@ -1,169 +1,45 @@
-# CodeCraft engineer guide
+# engineer workflow
 
-This guide provides **step-by-step instructions** for using CodeCraft to implement software projects.
+End-to-end guide.
 
-## Prerequisites
+## prerequisites
+- git  
+- LLM access (OpenAI, Anthropic, local)  
+- project toolchain (node, python, …)
 
-✅ **System check:**
-- **Git:** Version control for committing changes
-- **LLM API access:** OpenAI, Anthropic, or local model
-- **Required project tools:** Node.js, Python, Docker, etc. (project-dependent)
+## phase 1 specify
+Input → requirements  
+Output → `01-specification/technical-specification.md`  
+Agent → planner
 
-✅ **CodeCraft setup:**
-```bash
-# Navigate to your existing project
-cd your-existing-project
+1. Copy `framework/planner/SYSTEM_PROMPT.md` to the LLM.  
+2. Provide `framework/global-llm-rules.md` + requirements.  
+3. Save spec.
 
-# Set up CodeCraft
-git clone https://github.com/your-org/code-craft.git /tmp/code-craft
-/tmp/code-craft/setup.sh
-cd codecraft
-```
+## phase 2 plan
+Input → spec  
+Output → `02-plan/implementation-plan.md`  
+Agent → planner
 
-## Core workflow
+1. Copy `framework/planner/PLAN_PROMPT.md` to the LLM.  
+2. Provide spec.  
+3. Commit the plan.
 
-### Phase 1: Requirements to technical specification
+## phase 3 execute
+Input → plan  
+Output → code commits  
+Agent → coder
 
-**Input:** Project requirements (user stories, feature requests, etc.)  
-**Output:** `01-specification/technical-specification.md`  
-**Agent:** Planner
+1. Copy `framework/coder/SYSTEM_PROMPT.md` to the LLM.  
+2. Follow tasks.  
+3. Commit after each logical unit; update `CHANGELOG.md`.
 
-```bash
-# 1. Set up the Planner
-cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
+## phase 4 verify
+Run tests.  
+Fix failures; iterate until green.
 
-# 2. Provide context files
-cat codecraft/framework/planner/guidelines.md
-cat codecraft/framework/global-llm-rules.md
-
-# 3. Submit your requirements
-# Paste your project requirements to the LLM
-
-# 4. Save the output
-# Copy the generated specification to codecraft/01-specification/technical-specification.md
-```
-
-### Phase 2: Technical specification to implementation plan
-
-**Input:** `01-specification/technical-specification.md`  
-**Output:** `02-plan/implementation-plan.md`  
-**Agent:** Planner  
-
-```bash
-# 1. Continue with same Planner session or setup new one
-cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
-
-# 2. Provide the tech spec
-cat codecraft/01-specification/technical-specification.md
-
-# 3. Request implementation plan generation
-# Ask the LLM to generate an implementation plan based on the spec
-
-# 4. Save the output  
-# Copy the generated plan to codecraft/02-plan/implementation-plan.md
-```
-
-### Phase 3: Implementation plan execution
-
-**Input:** `02-plan/implementation-plan.md`  
-**Output:** Committed code changes  
-**Agent:** Coder
-
-```bash
-# 1. Set up the Coder
-cat codecraft/framework/coder/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
-
-# 2. Provide context files
-cat codecraft/framework/coder/protocol.md
-cat codecraft/framework/global-llm-rules.md
-
-# 3. Provide the implementation plan
-cat codecraft/02-plan/implementation-plan.md
-
-# 4. Execute tasks
-# The Coder will implement each task, verify completion, and commit changes
-```
-
-### Phase 4: Verification and iteration
-
-**Review and test:**
-```bash
-# Run tests
-npm test    # or appropriate test command for your project
-
-# Review git history
-git log --oneline
-
-# Test the application
-npm start   # or appropriate start command
-```
-
-**If issues found:**
-- Update requirements and restart from Phase 1, or
-- Manually fix critical issues and update documentation
-
-## Templates and examples
-
-**Starter templates:**
-- `codecraft/templates/input-requirements.md` - Format for project requirements
-- `codecraft/templates/combined-workflow.md` - Single LLM workflow template
-
-**Reference examples:**
-- `codecraft/examples/todo-app/` - Simple web application
-- `codecraft/examples/counter-app/` - Basic interactive component
-
-## Advanced workflows
-
-### Combined single-LLM workflow
-For simpler projects, use one Planner session to generate both specification and implementation plan:
-
-```bash
-# 1. Setup Planner with combined workflow template
-cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
-cat codecraft/templates/combined-workflow.md
-
-# 2. Submit requirements and request both spec and plan
-# The LLM will generate both documents in sequence
-
-# 3. Save outputs to respective directories
-```
-
-### Iterative development
-For complex projects requiring multiple cycles:
-
-1. Start with MVP requirements → basic spec → basic plan → MVP implementation
-2. Add feature requirements → updated spec → extended plan → feature implementation  
-3. Repeat as needed
-
-## Troubleshooting
-
-### Common issues
-
-**Planner outputs incorrect format:**
-- Check that `codecraft/framework/planner/guidelines.md` was provided as context
-- Verify the requirements are clear and detailed
-
-**Coder skips verification steps:**  
-- Ensure `codecraft/framework/coder/protocol.md` was provided as context
-- Check that verification criteria in the plan are specific and testable
-
-**Dependency/tool errors:**
-- Verify all required tools are installed (Node.js, Python, etc.)
-- Check that the project structure matches what's specified in the plan
-
-### Error recovery
-
-**If a task fails during implementation:**
-1. Read the error message carefully
-2. Fix the issue manually if simple
-3. Update the implementation plan to reflect the fix
-4. Continue with remaining tasks
-
-**If the specification is incomplete:**
-1. Gather additional requirements  
-2. Regenerate the specification with more detail
-3. Update or regenerate the implementation plan accordingly
-
----
-
-**Support:** Review the templates and examples directories for reference implementations and troubleshooting guidance. 
+## troubleshooting
+| symptom          | action                         |
+| ---------------- | ------------------------------ |
+| failing task     | inspect error, patch, update plan |
+| incomplete spec  | gather detail, regenerate spec & plan |

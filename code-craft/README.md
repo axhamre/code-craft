@@ -1,51 +1,30 @@
 # CodeCraft
 
-**Transform requirements into working software using structured LLM workflows.**
+Structured LLM‑assisted software delivery.
 
-CodeCraft is a framework for **AI-assisted software development** that uses specialized LLM agents to create structured, verifiable implementations.
+## workflow
+1. **specify** – requirements → technical spec  
+2. **plan** – spec → implementation plan  
+3. **execute** – code with atomic commits  
+4. **verify** – tests confirm behaviour
 
-## Workflow
-
-1. **Specify** - Planner converts requirements → technical specifications  
-2. **Plan** - Planner creates detailed implementation steps
-3. **Execute** - Coder implements the code
-4. **Verify** - Test and validate the implementation
-
-## Quick start
+## quick start
+Full walk‑through in `QUICKSTART.md`.
 
 ```bash
-# In your existing project directory
-git clone https://github.com/your-org/code-craft.git /tmp/code-craft
-/tmp/code-craft/setup.sh
-cd codecraft
+bash setup.sh          # copy framework
+bash scripts/specify.sh # generate spec
+bash scripts/plan.sh    # generate plan
+bash scripts/execute.sh # code & commit
+bash scripts/verify.sh  # run tests
 ```
 
-See `QUICKSTART.md` for complete workflow instructions.
+## directories
+| path          | role                         |
+| ------------- | ---------------------------- |
+| `framework/`  | system prompts & rules       |
+| `templates/`  | starter prompts              |
+| `guides/`     | detailed guides              |
+| `examples/`   | reference implementations    |
 
-## Directory structure
-
-```
-CodeCraft/
-├── framework/               # Core LLM agents
-│   ├── planner/            # Creates specifications and plans
-│   ├── coder/              # Implements plans and commits code
-│   └── global-llm-rules.md # Style and formatting rules
-├── templates/               # Prompt templates
-├── examples/                # Reference implementations  
-├── guides/                  # Detailed workflows
-└── QUICKSTART.md           # Get started quickly
-```
-
-## Key components
-
-- **Planner** - Creates specifications and plans from requirements
-- **Coder** - Implements plans and commits code changes
-- **Templates** - Starting prompts for different phases
-- **Examples** - Complete reference projects
-
-## Documentation
-
-- `QUICKSTART.md` - Get productive in 2 minutes
-- `guides/engineer-workflow.md` - Complete workflow guide
-- `examples/` - Reference implementations
-
+More depth → `guides/engineer-workflow.md`.

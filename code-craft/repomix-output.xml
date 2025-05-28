@@ -1,0 +1,1501 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+4. Repository files, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+<additional_info>
+
+</additional_info>
+
+</file_summary>
+
+<directory_structure>
+examples/
+  project-artifacts-example/
+    01-specification/
+      input-requirements.md
+      technical-specification.md
+    02-planned-development/
+      .tmp/
+        implementation-plan.md
+      implementation-plan.md
+    03-verification/
+      test-cases.md
+      verification-checklist.md
+      verification-report.md
+    04-builder-output/
+      commit-object.json
+framework/
+  coder/
+    protocol.md
+    SYSTEM_PROMPT.md
+  planner/
+    guidelines.md
+    SYSTEM_PROMPT.md
+  global-llm-rules.md
+guides/
+  engineer-workflow.md
+templates/
+  planning/
+    implementation-plan-generation-prompt.md
+  specification/
+    tech-spec-generation-prompt.md
+  verification/
+    verification-checklist-generation-prompt.md
+CHANGELOG.md
+CONTRIBUTING.md
+QUICKSTART.md
+README.md
+RELEASE_NOTES_TEMPLATE.md
+setup.sh
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="examples/project-artifacts-example/01-specification/input-requirements.md">
+Placeholder example requirement: *the system shall allow users to manage widgets via a web UI*.
+</file>
+
+<file path="examples/project-artifacts-example/01-specification/technical-specification.md">
+# Tech spec for workspace cleanup
+
+**Project Goal:** Streamline the `mortgage-costs` Next.js project by removing unused files, dependencies, and configurations based on a recent audit.
+
+**Date:** 2025-05-17
+
+---
+
+## 1. ESLint configuration consolidation
+
+*   **Current State:** Two ESLint configuration files exist: `.eslintrc.cjs` and `eslint.config.mjs`.
+*   **Problem:** Potential for conflicting configurations and maintenance overhead. `eslint.config.mjs` is the more modern flat config.
+*   **Proposed Change:**
+    1.  Delete `.eslintrc.cjs`.
+    2.  Ensure `eslint.config.mjs` is fully functional and correctly configured as the sole ESLint setup.
+*   **Affected Files:**
+    *   `.eslintrc.cjs` (to be deleted)
+    *   `eslint.config.mjs` (to be verified)
+*   **Verification:**
+    *   Run ESLint (e.g., `npx eslint .`) and ensure no errors related to configuration.
+    *   Confirm linting rules are applied as expected.
+
+## 2. Unused source code removal - AI modules
+
+*   **Current State:** The `src/ai/` directory contains `dev.ts` and `ai-instance.ts`.
+*   **Problem:** These files were part of an experimental AI integration (Genkit) that is no longer in use.
+*   **Proposed Change:** Delete `src/ai/dev.ts` and `src/ai/ai-instance.ts`.
+*   **Affected Files:**
+    *   `src/ai/dev.ts` (to be deleted)
+    *   `src/ai/ai-instance.ts` (to be deleted)
+*   **Verification:**
+    *   Application builds successfully after removal.
+    *   No runtime errors related to missing AI modules.
+
+## 3. Dependency pruning - `package.json`
+
+*   **Current State:** `package.json` lists several dependencies that are no longer required due to feature removal or changes in approach.
+*   **Problem:** Bloated `node_modules`, increased build times, potential security vulnerabilities from unmaintained packages.
+*   **Proposed Changes:**
+    1.  Remove AI-related dependencies: `@genkit-ai/googleai`, `genkit`, `openai`.
+    2.  Remove other identified unused dependencies: `@hookform/resolvers`, `@tanstack/react-query`, `date-fns`, `patch-package`, `zod`.
+    3.  Remove unused npm scripts related to Genkit: `genkit:dev`, `genkit:watch`.
+    4.  Run `npm prune` (or equivalent `pnpm prune` / `yarn autoclean`) to remove unlisted packages from `node_modules` and update `package-lock.json`.
+*   **Affected Files:**
+    *   `package.json`
+    *   `package-lock.json`
+    *   `node_modules/`
+*   **Verification:**
+    *   Application builds and runs correctly after dependency removal.
+    *   `npm install` (or equivalent) works without issues.
+    *   Confirm removed packages are no longer in `node_modules`.
+
+## 4. Unused UI components and hooks removal
+
+*   **Current State:** A significant number of UI components in `src/components/ui/` (approx. 30 files, including `accordion.tsx`, `alert-dialog.tsx`, etc.), `src/components/icons.ts`, and hooks (`src/hooks/use-mobile.tsx`, `src/hooks/use-toast.ts`) are not actively used. `components.json` also lists these components.
+*   **Problem:** Codebase clutter, increased maintenance, potential for confusion.
+*   **Proposed Changes:**
+    1.  Delete the 30 specified unused component files from `src/components/ui/`.
+    2.  Update `components.json` to remove entries for the deleted components.
+    3.  Update any barrel export files (e.g., `src/components/ui/index.ts`, `src/components/index.ts`) to remove references.
+    4.  Delete `src/components/icons.ts`.
+    5.  Delete `src/hooks/use-mobile.tsx` and `src/hooks/use-toast.ts`.
+    6.  Update any barrel export files in `src/hooks/` if they exist and reference these hooks.
+*   **Affected Files:**
+    *   Multiple files under `src/components/ui/` (to be deleted)
+    *   `components.json` (to be modified)
+    *   Potentially `src/components/ui/index.ts` and/or `src/components/index.ts` (to be modified/deleted)
+    *   `src/components/icons.ts` (to be deleted)
+    *   `src/hooks/use-mobile.tsx` (to be deleted)
+    *   `src/hooks/use-toast.ts` (to be deleted)
+    *   Potentially `src/hooks/index.ts` (to be modified/deleted)
+*   **Verification:**
+    *   Application builds and runs correctly.
+    *   No broken UI elements or import errors.
+
+## 5. Unused utility code removal
+
+*   **Current State:** `src/utils/localStorage.ts` and its test `src/utils/localStorage.test.ts` are unused.
+*   **Problem:** Dead code.
+*   **Proposed Change:** Delete `src/utils/localStorage.ts` and `src/utils/localStorage.test.ts`.
+*   **Affected Files:**
+    *   `src/utils/localStorage.ts` (to be deleted)
+    *   `src/utils/localStorage.test.ts` (to be deleted)
+*   **Verification:**
+    *   Application builds and tests pass successfully.
+
+---
+
+**Next Steps:**
+*   Generate a detailed implementation plan based on this technical specification.
+*   Execute the implementation plan.
+*   Verify all changes thoroughly.
+</file>
+
+<file path="examples/project-artifacts-example/02-planned-development/.tmp/implementation-plan.md">
+# Implementation plan for: Tech spec for workspace cleanup
+
+**Date Generated:** 2025-05-17
+**Tech Spec Version/Reference:** ../01-specification/technical-specification.md
+
+---
+
+## Section 1: ESLint configuration cleanup
+
+### [x] Task ID: S1.T1
+**Description:** Resolve ESLint configuration conflict by deleting `.eslintrc.cjs` as per tech spec items #1 and #2. This ensures `eslint.config.mjs` is the sole ESLint configuration.
+**Affected Components/Files:**
+  - `.eslintrc.cjs` (Deleted)
+  - `eslint.config.mjs` (Remains as primary)
+**Inputs (if any):**
+  - Tech spec items #1, #2 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - `.eslintrc.cjs` file removed from the workspace.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [x] **Criterion 1:** The file `.eslintrc.cjs` no longer exists.
+  *   [x] **Criterion 2:** The file `eslint.config.mjs` exists.
+  *   [x] **Criterion 3:** Running ESLint (e.g., `npx eslint .`) completes without errors related to conflicting configurations or issues from the old `.eslintrc.cjs`.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `fix(eslint): remove legacy .eslintrc.cjs and resolve config conflict` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** Ensure no ESLint errors are introduced by this change.
+
+---
+
+## Section 2: Source code cleanup - AI modules
+
+### [x] Task ID: S2.T1
+**Description:** Delete unused AI-related source files `src/ai/dev.ts` and `src/ai/ai-instance.ts` as per tech spec item #3.
+**Affected Components/Files:**
+  - `src/ai/dev.ts` (Deleted)
+  - `src/ai/ai-instance.ts` (Deleted)
+**Inputs (if any):**
+  - Tech spec item #3 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - Specified files removed from the workspace.
+  - The directory `src/ai/` may become empty or be removed if these were the only files.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [x] **Criterion 1:** The file `src/ai/dev.ts` no longer exists.
+  *   [x] **Criterion 2:** The file `src/ai/ai-instance.ts` no longer exists.
+  *   [x] **Criterion 3:** The application builds successfully (e.g., `npm run build` or `vite build`) without errors related to these files.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(ai): remove unused AI module files dev.ts and ai-instance.ts` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** If the `src/ai` directory becomes empty, it can be removed.
+
+---
+
+## Section 3: Dependency management - `package.json` cleanup
+
+### [ ] Task ID: S3.T1
+**Description:** Remove unused AI-related dependencies (`@genkit-ai/googleai`, `genkit`, `openai`) from `package.json` as per tech spec item #4.
+**Affected Components/Files:**
+  - `package.json` (Modified)
+**Inputs (if any):**
+  - Tech spec item #4 from `../01-specification/technical-specification.md`
+  - Output from Task ID S2.T1
+**Outputs/Artifacts:**
+  - `package.json` updated with specified dependencies removed from the `dependencies` section.
+**Dependencies:** S2.T1
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The `dependencies` section in `package.json` no longer lists `@genkit-ai/googleai`.
+  *   [ ] **Criterion 2:** The `dependencies` section in `package.json` no longer lists `genkit`.
+  *   [ ] **Criterion 3:** The `dependencies` section in `package.json` no longer lists `openai`.
+  *   [ ] **Criterion 4:** `package.json` is valid JSON.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(deps): remove unused AI-related dependencies` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** Be careful when editing `package.json` to maintain valid JSON structure.
+
+---
+
+### [ ] Task ID: S3.T2
+**Description:** Remove other unused dependencies (`@hookform/resolvers`, `@tanstack/react-query`, `date-fns`, `patch-package`, `zod`) from `package.json` as per tech spec item #5.
+**Affected Components/Files:**
+  - `package.json` (Modified)
+**Inputs (if any):**
+  - Tech spec item #5 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - `package.json` updated with specified dependencies removed from the `dependencies` section.
+**Dependencies:** S3.T1
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The `dependencies` section in `package.json` no longer lists `@hookform/resolvers`.
+  *   [ ] **Criterion 2:** The `dependencies` section in `package.json` no longer lists `@tanstack/react-query`.
+  *   [ ] **Criterion 3:** The `dependencies` section in `package.json` no longer lists `date-fns`.
+  *   [ ] **Criterion 4:** The `dependencies` section in `package.json` no longer lists `patch-package`.
+  *   [ ] **Criterion 5:** The `dependencies` section in `package.json` no longer lists `zod`.
+  *   [ ] **Criterion 6:** `package.json` is valid JSON.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(deps): remove unused general dependencies` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** Ensure no other dependencies are accidentally removed or modified.
+
+---
+
+### [ ] Task ID: S3.T3
+**Description:** Remove unused npm scripts (`genkit:dev`, `genkit:watch`) from `package.json` as per tech spec item #6.
+**Affected Components/Files:**
+  - `package.json` (Modified)
+**Inputs (if any):**
+  - Tech spec item #6 from `../01-specification/technical-specification.md`
+  - Output from Task ID S2.T1
+**Outputs/Artifacts:**
+  - `package.json` updated with specified scripts removed from the `scripts` section.
+**Dependencies:** S2.T1, S3.T2
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The `scripts` section in `package.json` no longer contains the `genkit:dev` script.
+  *   [ ] **Criterion 2:** The `scripts` section in `package.json` no longer contains the `genkit:watch` script.
+  *   [ ] **Criterion 3:** `package.json` is valid JSON.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(scripts): remove unused genkit npm scripts` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** Verify that other scripts remain functional if they are related.
+
+---
+
+### [ ] Task ID: S3.T4
+**Description:** Run `npm prune` (or equivalent package manager command) to remove unlisted packages from `node_modules` and update lock file accordingly, as implied by tech spec items #4 and #5.
+**Affected Components/Files:**
+  - `node_modules/` (Modified)
+  - `package-lock.json` (or `pnpm-lock.yaml`, `yarn.lock`) (Modified)
+**Inputs (if any):**
+  - Outputs from Task IDs S3.T1, S3.T2
+**Outputs/Artifacts:**
+  - `node_modules` directory cleaned of unlisted packages.
+  - Lock file updated to reflect the pruned state.
+**Dependencies:** S3.T1, S3.T2, S3.T3
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The command `npm prune` (or equivalent for pnpm/yarn if used, e.g., `pnpm install --prune-lockfile` or `yarn install --force`) executes successfully without errors in the project root directory.
+  *   [ ] **Criterion 2:** The `package-lock.json` (or equivalent lock file) reflects the changes (e.g., by checking its modification timestamp or by comparing its content before and after).
+  *   [ ] **Criterion 3:** Previously removed dependencies (e.g., `genkit`, `zod`) are no longer present in `node_modules`. This can be verified by checking for the non-existence of directories like `node_modules/genkit` and `node_modules/zod`.
+  *   [ ] **Criterion 4:** The application installs dependencies correctly using `npm install` (or equivalent) after this change.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `chore(deps): prune extraneous packages from node_modules` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** The prune command should be run in the root of the project.
+
+---
+
+## Section 4: Source code cleanup - UI components and hooks
+
+### [ ] Task ID: S4.T1
+**Description:** Delete 30 unused UI component files from `src/components/ui/` and update `components.json` and any barrel exports, as per tech spec item #7.
+**Affected Components/Files:**
+  - `src/components/ui/accordion.tsx` (Deleted)
+  - `src/components/ui/alert-dialog.tsx` (Deleted)
+  - `src/components/ui/alert.tsx` (Deleted)
+  - `src/components/ui/avatar.tsx` (Deleted)
+  - `src/components/ui/badge-variants.ts` (Deleted)
+  - `src/components/ui/badge.tsx` (Deleted)
+  - `src/components/ui/button-variants.ts` (Deleted)
+  - `src/components/ui/calendar.tsx` (Deleted)
+  - `src/components/ui/chart.tsx` (Deleted)
+  - `src/components/ui/checkbox.tsx` (Deleted)
+  - `src/components/ui/dialog.tsx` (Deleted)
+  - `src/components/ui/dropdown-menu.tsx` (Deleted)
+  - `src/components/ui/form-hooks.ts` (Deleted)
+  - `src/components/ui/form.tsx` (Deleted)
+  - `src/components/ui/menubar.tsx` (Deleted)
+  - `src/components/ui/popover.tsx` (Deleted)
+  - `src/components/ui/progress.tsx` (Deleted)
+  - `src/components/ui/radio-group.tsx` (Deleted)
+  - `src/components/ui/scroll-area.tsx` (Deleted)
+  - `src/components/ui/select.tsx` (Deleted)
+  - `src/components/ui/sheet.tsx` (Deleted)
+  - `src/components/ui/sidebar.tsx` (Deleted)
+  - `src/components/ui/skeleton.tsx` (Deleted)
+  - `src/components/ui/slider.tsx` (Deleted)
+  - `src/components/ui/switch.tsx` (Deleted)
+  - `src/components/ui/table.tsx` (Deleted)
+  - `src/components/ui/tabs.tsx` (Deleted)
+  - `src/components/ui/textarea.tsx` (Deleted)
+  - `src/components/ui/toast.tsx` (Deleted)
+  - `src/components/ui/toaster.tsx` (Deleted)
+  - `src/components/ui/tooltip.tsx` (Deleted)
+  - `components.json` (Modified)
+  - Potentially `src/components/ui/index.ts` or `src/components/index.ts` (Modified/Deleted)
+**Inputs (if any):**
+  - Tech spec item #7 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - Specified UI component files removed from `src/components/ui/`.
+  - `components.json` updated.
+  - Any barrel files re-exporting these components are updated or removed.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** All 30 listed UI component files under `src/components/ui/` no longer exist.
+  *   [ ] **Criterion 2:** The `components.json` file is updated to remove references to the deleted components and is valid JSON.
+  *   [ ] **Criterion 3:** Check for and remove/update any barrel export files (e.g., `src/components/ui/index.ts` or `src/components/index.ts`) that might reference these deleted components.
+  *   [ ] **Criterion 4:** The application builds successfully (e.g., `npm run build` or `vite build`) without errors related to missing component imports.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(ui): remove 30 unused UI components and update registry` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** Ensure `components.json` is updated to reflect the removed components. Also, check any `index.ts` files in `src/components/` or `src/components/ui/` for references to the deleted components and remove them. If the `src/components/ui` directory becomes empty, it can be removed.
+
+---
+
+### [ ] Task ID: S4.T2
+**Description:** Delete unused `src/components/icons.ts` as per tech spec item #8.
+**Affected Components/Files:**
+  - `src/components/icons.ts` (Deleted)
+**Inputs (if any):**
+  - Tech spec item #8 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - `src/components/icons.ts` file removed.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The file `src/components/icons.ts` no longer exists.
+  *   [ ] **Criterion 2:** The application builds successfully (e.g., `npm run build` or `vite build`) without errors related to `icons.ts`.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(ui): remove unused icons.ts` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** None.
+
+---
+
+### [ ] Task ID: S4.T3
+**Description:** Delete unused hook files `src/hooks/use-mobile.tsx` and `src/hooks/use-toast.ts` as per tech spec item #9.
+**Affected Components/Files:**
+  - `src/hooks/use-mobile.tsx` (Deleted)
+  - `src/hooks/use-toast.ts` (Deleted)
+**Inputs (if any):**
+  - Tech spec item #9 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - Specified hook files removed from `src/hooks/`.
+**Dependencies:** S4.T1
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The file `src/hooks/use-mobile.tsx` no longer exists.
+  *   [ ] **Criterion 2:** The file `src/hooks/use-toast.ts` no longer exists.
+  *   [ ] **Criterion 3:** The application builds successfully (e.g., `npm run build` or `vite build`) without errors related to these hooks.
+  *   [ ] **Criterion 4:** Check for and remove/update any barrel export files (e.g., `src/hooks/index.ts`) that might reference these deleted hooks.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(hooks): remove unused use-mobile and use-toast hooks` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** If the `src/hooks` directory becomes empty or only contains files that are also planned for deletion, consider if the directory itself can be removed after all relevant tasks are done.
+
+---
+
+## Section 5: Source code cleanup - utilities
+
+### [ ] Task ID: S5.T1
+**Description:** Delete unused utility file `src/utils/localStorage.ts` and its associated test file `src/utils/localStorage.test.ts` as per tech spec item #10.
+**Affected Components/Files:**
+  - `src/utils/localStorage.ts` (Deleted)
+  - `src/utils/localStorage.test.ts` (Deleted)
+**Inputs (if any):**
+  - Tech spec item #10 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - Specified utility and test files removed from `src/utils/`.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The file `src/utils/localStorage.ts` no longer exists.
+  *   [ ] **Criterion 2:** The file `src/utils/localStorage.test.ts` no longer exists.
+  *   [ ] **Criterion 3:** The application builds successfully (e.g., `npm run build` or `vite build`) without errors.
+  *   [ ] **Criterion 4:** Test suite runs successfully (e.g., `npm test` or `vite test`) without errors related to missing files (especially if tests were previously attempting to run these specific tests).
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(utils): remove unused localStorage utility and tests` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** If the `src/utils` directory becomes empty or only contains files that are also planned for deletion, consider if the directory itself can be removed after all relevant tasks are done.
+
+---
+</file>
+
+<file path="examples/project-artifacts-example/02-planned-development/implementation-plan.md">
+# Implementation plan for: Workspace Cleanup Example
+
+**Date Generated:** 2025-05-20
+**Tech Spec Version/Reference:** ../01-specification/technical-specification.md
+
+---
+
+_This is the primary, clean version of the implementation plan for the "Workspace Cleanup Example". The `ExecutorLLM`'s working copy with ticked checkboxes will be located in the `.tmp/` subdirectory._
+
+_This plan should be populated based on the referenced Technical Specification, following the guidelines in `../../documentation/generatorllm/generate-implementation-plan-guidelines.md`._
+
+## Section 1: ESLint configuration cleanup
+
+### [ ] Task ID: S1.T1
+**Description:** Resolve ESLint configuration conflict by deleting `.eslintrc.cjs`. This ensures `eslint.config.mjs` is the sole ESLint configuration.
+**Affected Components/Files:**
+  - `.eslintrc.cjs` (Action: Deleted)
+  - `eslint.config.mjs` (Action: Verified as primary)
+**Inputs (if any):**
+  - Tech spec items #1, #2 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - `.eslintrc.cjs` file removed from the workspace.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The file `.eslintrc.cjs` no longer exists.
+  *   [ ] **Criterion 2:** The file `eslint.config.mjs` exists.
+  *   [ ] **Criterion 3:** Running ESLint (e.g., `npx eslint .`) completes without errors related to conflicting configurations.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `fix(eslint): remove legacy .eslintrc.cjs and resolve config conflict` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** Ensure no ESLint errors are introduced by this change.
+
+---
+
+## Section 2: Source code cleanup - AI modules
+
+### [ ] Task ID: S2.T1
+**Description:** Delete unused AI-related source files `src/ai/dev.ts` and `src/ai/ai-instance.ts`.
+**Affected Components/Files:**
+  - `src/ai/dev.ts` (Action: Deleted)
+  - `src/ai/ai-instance.ts` (Action: Deleted)
+**Inputs (if any):**
+  - Tech spec item #3 from `../01-specification/technical-specification.md`
+**Outputs/Artifacts:**
+  - Specified files removed from the workspace.
+  - The directory `src/ai/` may become empty.
+**Dependencies:** None
+**Verification Steps / Success Criteria:**
+  *   [ ] **Criterion 1:** The file `src/ai/dev.ts` no longer exists.
+  *   [ ] **Criterion 2:** The file `src/ai/ai-instance.ts` no longer exists.
+  *   [ ] **Criterion 3:** The application builds successfully without errors related to these files.
+**Agent Commit Instruction:** After successful verification of all criteria for this task, commit all changes. The commit message MUST follow the pattern: `refactor(ai): remove unused AI module files dev.ts and ai-instance.ts` and MUST NOT exceed 72 characters.
+**Notes/Hints for Agent (Optional):** If the `src/ai` directory becomes empty, it can be removed.
+
+---
+
+_(Further sections and tasks for Dependency Management, UI Component Cleanup, and Utility Code Removal would follow, mirroring the structure of the `technical-specification.md` and the example `.tmp/implementation-plan.md` we revised earlier, but with empty `[ ]` checkboxes.)_
+
+_(This example is intentionally truncated for brevity here but would typically list all tasks derived from the tech spec.)_
+</file>
+
+<file path="examples/project-artifacts-example/03-verification/test-cases.md">
+Placeholder: detailed test cases for critical functionalities will be listed here.
+</file>
+
+<file path="examples/project-artifacts-example/03-verification/verification-checklist.md">
+- [ ] placeholder checklist item – the web UI loads within 2 s
+</file>
+
+<file path="examples/project-artifacts-example/03-verification/verification-report.md">
+Placeholder: summary of verification activities and outcomes. All tests passed.
+</file>
+
+<file path="examples/project-artifacts-example/04-builder-output/commit-object.json">
+{
+  "repo": "example-repo",
+  "branch": "main",
+  "commit_message": "Initial widget feature",
+  "files_changed": [
+    {
+      "path": "src/widget.py",
+      "change_type": "added",
+      "diff_summary": "Add widget class"
+    }
+  ],
+  "metadata": {
+    "timestamp": "2025-05-22T10:00:00Z",
+    "author": "example-author"
+  }
+}
+</file>
+
+<file path="framework/coder/protocol.md">
+# Coder protocol
+
+This protocol defines how **Coder** executes implementation plans.
+
+## Overview
+
+**Coder** is a deterministic execution agent that transforms implementation plans into verified code commits. It follows a strict protocol to ensure consistent, reliable results.
+
+## Execution workflow
+
+### 1. Plan validation
+*   Verify the implementation plan follows the format specified in `../planner/guidelines.md`.
+*   Confirm all mandatory fields are present: task descriptions, affected files, verification criteria, commit instructions.
+*   Check that file paths are relative to project root.
+
+### 2. Task execution loop
+For each task in the implementation plan:
+
+1.  **Read task details:**
+    *   Task ID, description, affected components/files
+    *   Dependencies (ensure prerequisites are completed)
+    *   Inputs, outputs, verification criteria
+2.  **Execute changes:**
+    *   Only modify files explicitly listed in "Affected Components/Files"
+    *   Follow the task description precisely
+    *   Never hallucinate file paths or create unlisted files
+3.  **Verify task completion:**
+    *   Iterate through each **verification step / success criterion** listed for the task
+    *   Perform the specified action (e.g., run a command, check file existence, inspect file content)
+    *   If a criterion is met, mark it as complete (e.g., `[x]`) in the working copy of the implementation plan
+    *   If a criterion is not met, attempt to troubleshoot and re-execute the changes. If persistent issues arise, halt and report.
+4.  **Commit changes (if all criteria met):**
+    *   Once all verification criteria for a task are successfully met, use the exact `agent commit instruction` provided in the task to commit the changes
+    *   Ensure the commit message adheres to any specified patterns and length constraints
+5.  **Update working plan:** Mark the entire task as complete (e.g., `### [x] Task ID: ...`) in the working copy of the implementation plan
+6.  **Proceed to next task:** Repeat from step 1
+
+## Error handling and reporting
+
+*   **Minor errors:** If a verification step fails, attempt self-correction based on the error message or task context.
+*   **Persistent errors:** If a task cannot be completed or verified after a reasonable number of attempts (e.g., 3):
+    *   Revert any partial changes made for that specific task to maintain a clean state
+    *   Clearly mark the task as FAILED in the working implementation plan, along with a brief error summary
+    *   Halt execution of further tasks and await manual intervention or revised instructions
+*   **Tooling/environment issues:** If encountering issues with the development environment or tools (e.g., Git command fails, npm script errors not related to the code change), report these immediately.
+
+## Completion
+
+Once all tasks in the `implementation-plan.md` are processed (either completed and committed, or marked as FAILED), execution is considered complete. Provide a summary report, possibly by updating a final section in the working implementation plan or generating a separate output file.
+
+## Logging
+
+Maintain a log of actions, including:
+*   Task started
+*   Files modified/deleted/created
+*   Commands executed for verification
+*   Success/failure of verification steps
+*   Commit hashes for successful tasks
+*   Errors encountered
+
+This log is invaluable for debugging and auditing performance.
+
+---
+
+This protocol is a living document and may be updated as requirements evolve.
+</file>
+
+<file path="framework/coder/SYSTEM_PROMPT.md">
+## Coder system prompt
+
+You are **Coder**, a deterministic execution agent that transforms structured implementation plans into verified code commits.
+
+### Inputs
+- Implementation plan (markdown) following format in `../planner/guidelines.md`
+- Codebase context (diff/working directory)
+- `global-llm-rules.md`
+
+### Outputs
+- Code changes committed to repository using conventional commit messages
+- Execution log (concise, markdown)
+
+### Behavior guidelines
+1. Strictly follow the implementation plan. Ask for clarification if ambiguities exist before proceeding.  
+2. Never hallucinate file paths; only modify files listed in the plan.  
+3. Ensure unit tests pass locally before final commit.  
+4. Maintain idempotency; rerunning with identical input yields identical output.  
+5. Keep total tokens below **32,000**; if plan content exceeds limit, request chunked interface.
+
+### Rejection conditions
+* Missing mandatory fields in implementation plan
+* Unresolved dependencies  
+* Files not listed in plan
+
+Execute each task sequentially, verify completion criteria, then commit with the specified message pattern.
+</file>
+
+<file path="framework/planner/guidelines.md">
+# Planner guidelines
+
+## Technical specification format
+
+```markdown
+# Technical specification: [Project Name]
+
+**Project goal:** [One-sentence objective]
+**Date:** [YYYY-MM-DD]
+
+---
+
+## 1. Project overview
+- **Purpose**: [Problem being solved]
+- **Scope**: [What's included/excluded]
+
+## 2. Functional requirements
+- **[Feature name]**: [Description and behavior]
+- **[Feature name]**: [Description and behavior]
+
+## 3. Technical requirements
+- **Technology stack**: [Languages, frameworks, tools]
+- **Architecture**: [System design approach]
+
+## 4. Success criteria
+- [How to measure completion]
+- [Quality benchmarks]
+
+---
+
+### Conditional sections (include if applicable)
+
+**For data-heavy projects:**
+## 5. Data requirements
+- **Models**: [Key entities and relationships]
+- **Storage**: [Database, persistence needs]
+
+**For user-facing applications:**
+## 5. User experience requirements
+- **Interface**: [UI/UX specifications]
+- **Interactions**: [User workflows]
+
+**For integration projects:**
+## 5. Integration requirements
+- **External systems**: [APIs, services, dependencies]
+- **Data exchange**: [Formats, protocols]
+
+**For performance-critical projects:**
+## 5. Non-functional requirements
+- **Performance**: [Speed, scalability targets]
+- **Security**: [Protection requirements]
+- **Reliability**: [Uptime, error handling]
+```
+
+## Implementation plan format
+
+```markdown
+# Implementation plan: [Project Name]
+
+**Date generated:** [YYYY-MM-DD]
+**Tech spec reference:** [Path to specification]
+
+---
+
+## Section [N]: [Logical grouping]
+
+### [ ] Task ID: S[N].T[N]
+**Description:** [Single, atomic task]
+**Affected components/files:**
+- `[file/path]` (Action: [Created|Modified|Deleted])
+
+**Dependencies:** [Task IDs or "None"]
+
+**Verification steps:**
+- [ ] [Specific, checkable condition]
+- [ ] [Specific, checkable condition]
+
+**Commit instruction:** `[type]([scope]): [description]` (max 72 chars)
+
+---
+```
+
+## Formatting rules
+
+### Task requirements
+- **Atomic scope**: 1-5 related files maximum per task
+- **Clear actions**: Specify Created/Modified/Deleted for each file
+- **Logical order**: Dependencies must reference earlier task IDs
+
+### Verification criteria
+Use specific, observable conditions:
+- **File operations**: "File `[path]` exists", "Directory `[path]` contains `[file]`"
+- **Content checks**: "File `[path]` contains `[specific text/code]`"
+- **Application state**: "Application starts without errors", "Feature `[name]` functions as specified"
+- **Build validation**: "Project builds successfully", "No linting errors present"
+
+### Commit types (predefined)
+- `feat` - New features
+- `fix` - Bug fixes
+- `refactor` - Code restructuring
+- `docs` - Documentation
+- `test` - Testing
+- `chore` - Maintenance
+
+### Commit scopes (predefined)
+- `api` - Backend/API changes
+- `ui` - Frontend/interface changes
+- `db` - Database/data changes
+- `config` - Configuration changes
+- `deps` - Dependency changes
+</file>
+
+<file path="framework/planner/SYSTEM_PROMPT.md">
+# Planner system prompt
+
+You are **Planner**, a specialized agent that transforms project requirements into structured technical specifications and implementation plans.
+
+## Session types
+
+**Session 1 - Specification generation:**
+- Input: Project requirements + context
+- Output: Technical specification following guidelines format
+
+**Session 2 - Implementation planning:**
+- Input: Technical specification + context
+- Output: Implementation plan following guidelines format
+
+## Context integration mandate
+
+All specifications and plans must integrate provided context as foundational constraints. Context is not optional input—it defines the boundaries within which solutions must operate.
+
+## Core responsibilities
+
+1. **Requirements analysis**: Convert requirements into technical specifications
+2. **Implementation planning**: Break specifications into atomic, executable tasks
+3. **Verification design**: Define clear success criteria
+
+Follow `global-llm-rules.md` for style and `guidelines.md` for structure.
+</file>
+
+<file path="framework/global-llm-rules.md">
+# Global LLM Content Rules (`llm-dev-pipeline`)
+
+Universal rules for LLM-generated content. Specific LLM guides may add to these.
+
+---
+
+- **Case:** Use sentence case for all text, INCLUDING MARKDOWN HEADINGS; DO NOT use title case.
+- **Language:** Minimal, concise, technical; no creative/conversational/verbosity/jargon.
+- **Paths:** Relative to target project root in artifacts, unless specified.
+- **Placeholders:** Clear, bracketed, descriptive (e.g., `[Project Name]`).
+</file>
+
+<file path="guides/engineer-workflow.md">
+# CodeCraft engineer guide
+
+This guide provides **step-by-step instructions** for using CodeCraft to implement software projects.
+
+## Prerequisites
+
+✅ **System check:**
+- **Git:** Version control for committing changes
+- **LLM API access:** OpenAI, Anthropic, or local model
+- **Required project tools:** Node.js, Python, Docker, etc. (project-dependent)
+
+✅ **CodeCraft setup:**
+```bash
+# Navigate to your existing project
+cd your-existing-project
+
+# Set up CodeCraft
+git clone https://github.com/your-org/code-craft.git /tmp/code-craft
+/tmp/code-craft/setup.sh
+cd codecraft
+```
+
+## Core workflow
+
+### Phase 1: Requirements to technical specification
+
+**Input:** Project requirements (user stories, feature requests, etc.)  
+**Output:** `01-specification/technical-specification.md`  
+**Agent:** Planner
+
+```bash
+# 1. Set up the Planner
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
+
+# 2. Provide context files
+cat codecraft/framework/planner/guidelines.md
+cat codecraft/framework/global-llm-rules.md
+
+# 3. Submit your requirements
+# Paste your project requirements to the LLM
+
+# 4. Save the output
+# Copy the generated specification to codecraft/01-specification/technical-specification.md
+```
+
+### Phase 2: Technical specification to implementation plan
+
+**Input:** `01-specification/technical-specification.md`  
+**Output:** `02-plan/implementation-plan.md`  
+**Agent:** Planner  
+
+```bash
+# 1. Continue with same Planner session or setup new one
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
+
+# 2. Provide the tech spec
+cat codecraft/01-specification/technical-specification.md
+
+# 3. Request implementation plan generation
+# Ask the LLM to generate an implementation plan based on the spec
+
+# 4. Save the output  
+# Copy the generated plan to codecraft/02-plan/implementation-plan.md
+```
+
+### Phase 3: Implementation plan execution
+
+**Input:** `02-plan/implementation-plan.md`  
+**Output:** Committed code changes  
+**Agent:** Coder
+
+```bash
+# 1. Set up the Coder
+cat codecraft/framework/coder/SYSTEM_PROMPT.md | pbcopy # (Copy prompt to LLM)
+
+# 2. Provide context files
+cat codecraft/framework/coder/protocol.md
+cat codecraft/framework/global-llm-rules.md
+
+# 3. Provide the implementation plan
+cat codecraft/02-plan/implementation-plan.md
+
+# 4. Execute tasks
+# The Coder will implement each task, verify completion, and commit changes
+```
+
+### Phase 4: Verification and iteration
+
+**Review and test:**
+```bash
+# Run tests
+npm test    # or appropriate test command for your project
+
+# Review git history
+git log --oneline
+
+# Test the application
+npm start   # or appropriate start command
+```
+
+**If issues found:**
+- Update requirements and restart from Phase 1, or
+- Manually fix critical issues and update documentation
+
+## Templates and examples
+
+**Starter templates:**
+- `codecraft/templates/input-requirements.md` - Format for project requirements
+- `codecraft/templates/combined-workflow.md` - Single LLM workflow template
+
+**Reference examples:**
+- `codecraft/examples/todo-app/` - Simple web application
+- `codecraft/examples/counter-app/` - Basic interactive component
+
+## Advanced workflows
+
+### Combined single-LLM workflow
+For simpler projects, use one Planner session to generate both specification and implementation plan:
+
+```bash
+# 1. Setup Planner with combined workflow template
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/templates/combined-workflow.md
+
+# 2. Submit requirements and request both spec and plan
+# The LLM will generate both documents in sequence
+
+# 3. Save outputs to respective directories
+```
+
+### Iterative development
+For complex projects requiring multiple cycles:
+
+1. Start with MVP requirements → basic spec → basic plan → MVP implementation
+2. Add feature requirements → updated spec → extended plan → feature implementation  
+3. Repeat as needed
+
+## Troubleshooting
+
+### Common issues
+
+**Planner outputs incorrect format:**
+- Check that `codecraft/framework/planner/guidelines.md` was provided as context
+- Verify the requirements are clear and detailed
+
+**Coder skips verification steps:**  
+- Ensure `codecraft/framework/coder/protocol.md` was provided as context
+- Check that verification criteria in the plan are specific and testable
+
+**Dependency/tool errors:**
+- Verify all required tools are installed (Node.js, Python, etc.)
+- Check that the project structure matches what's specified in the plan
+
+### Error recovery
+
+**If a task fails during implementation:**
+1. Read the error message carefully
+2. Fix the issue manually if simple
+3. Update the implementation plan to reflect the fix
+4. Continue with remaining tasks
+
+**If the specification is incomplete:**
+1. Gather additional requirements  
+2. Regenerate the specification with more detail
+3. Update or regenerate the implementation plan accordingly
+
+---
+
+**Support:** Review the templates and examples directories for reference implementations and troubleshooting guidance.
+</file>
+
+<file path="templates/planning/implementation-plan-generation-prompt.md">
+# Implementation plan generation prompt
+
+## Task
+Generate a detailed implementation plan based on the provided technical specification.
+
+## Context files provided
+1. **Technical specification:** `../01-specification/technical-specification.md`
+2. **Guidelines:** `framework/planner/guidelines.md` (implementation plan section)
+3. **Global rules:** `framework/global-llm-rules.md`
+
+---
+
+## Technical specification
+
+**[ENGINEER: PASTE THE TECHNICAL SPECIFICATION HERE]**
+
+---
+
+## Codebase context (if applicable)
+
+**[ENGINEER: PASTE ANY EXISTING CODEBASE CONTEXT HERE - file structure, key files, etc.]**
+
+---
+
+## Instructions for Planner:
+
+1.  **Input:** Technical specification above + any codebase context
+2.  **Structure output:** Strictly adhere to the content and formatting rules defined in `framework/planner/guidelines.md`. This includes breaking tasks into atomic, verifiable units with clear commit instructions.
+3.  **Global rules:** Follow `framework/global-llm-rules.md` for style and approach  
+4.  **Dependencies:** Ensure tasks are ordered logically with clear dependency relationships
+5.  **Clarity & actionability:** Ensure the plan is unambiguous and directly actionable by **Coder**.
+
+---
+
+## Required output structure
+
+Refer to the implementation plan template in `framework/planner/guidelines.md` for the exact structure.
+
+The plan must include:
+- Task sections with descriptive titles
+- Atomic tasks with IDs, descriptions, affected files
+- Clear verification criteria for each task
+- Proper dependency management
+- Specific commit instructions
+
+---
+
+*(Planner: Populate the implementation plan here, following the guidelines.)*
+</file>
+
+<file path="templates/specification/tech-spec-generation-prompt.md">
+# Tech spec generation prompt
+
+## Task
+Generate a comprehensive technical specification from the provided project requirements.
+
+## Instructions for Planner:
+
+1.  **Input:** Project requirements provided below
+2.  **Structure output:** Strictly adhere to the content and formatting rules defined in `framework/planner/guidelines.md`.
+3.  **Global rules:** Follow `framework/global-llm-rules.md` for style and approach
+4.  **Output format:** Markdown (.md) file structure exactly as specified in guidelines
+
+---
+
+## Project requirements
+
+**[ENGINEER: PASTE YOUR PROJECT REQUIREMENTS HERE]**
+
+---
+
+## Expected output structure
+
+Refer to the technical specification template in `framework/planner/guidelines.md` for the exact structure.
+
+The specification must include:
+- Project overview
+- Functional and technical requirements  
+- Non-functional requirements
+- Assumptions and constraints
+- Success criteria
+
+---
+
+*(Planner: Populate the rest of the technical specification here, following the guidelines.)*
+</file>
+
+<file path="templates/verification/verification-checklist-generation-prompt.md">
+# Verification checklist generation prompt
+
+## Task
+Generate a comprehensive verification checklist based on the technical specification and implementation plan.
+
+## Instructions for Planner:
+
+1. **Input:** Technical specification and implementation plan provided below
+2. **Output:** Structured verification checklist with specific, testable criteria
+3. **Format:** Markdown with clear sections and checkboxes
+4. **Focus:** Functional requirements, technical requirements, and quality standards
+
+---
+
+## Technical specification
+
+**[ENGINEER: PASTE THE TECHNICAL SPECIFICATION HERE]**
+
+---
+
+## Implementation plan
+
+**[ENGINEER: PASTE THE IMPLEMENTATION PLAN HERE]**
+
+---
+
+## Required verification areas
+
+Create verification criteria for:
+- **Functional requirements:** All features work as specified
+- **Technical requirements:** Architecture and integration points
+- **Non-functional requirements:** Performance, security, usability
+- **Code quality:** Testing, documentation, standards compliance
+- **Deployment readiness:** Build, deployment, configuration
+
+Use specific, measurable criteria that can be verified through testing, inspection, or automated checks.
+
+---
+
+*(Planner: Generate the verification checklist here.)*
+</file>
+
+<file path="CHANGELOG.md">
+# Changelog
+
+## 1.1.2 – 2025-05-25
+
+### Fixed
+* **Documentation paths**: Corrected all framework/ references to use codecraft/ prefix for embedded workflow
+* **User workflow**: Fixed paths in QUICKSTART.md and engineer-workflow.md to work from project root
+
+---
+
+## 1.1.1 – 2025-05-25
+
+### Fixed
+* **Contributing guide**: Added semantic versioning guidelines to release process
+
+---
+
+## 1.1.0 – 2025-05-25
+
+### Added
+* **Setup script**: Added `setup.sh` to copy essential CodeCraft files into existing projects
+* **Existing project workflow**: Updated all documentation to support embedding CodeCraft into ongoing projects
+
+### Changed
+* **QUICKSTART.md**: Rewritten for existing project integration instead of greenfield development
+* **README.md**: Added quick setup commands for existing projects
+* **Engineer workflow guide**: Updated setup instructions for existing project context
+
+---
+
+## 1.0.2 – 2025-05-25
+
+### Fixed
+* **Contributing guide**: Corrected sentence casing, removed irrelevant CI/GitHub release steps, added proper development workflow
+* **Documentation consistency**: Fixed CHANGELOG date accuracy (was using incorrect dates)
+
+---
+
+## 1.0.1 – 2025-05-25
+
+### Fixed
+* **Critical framework gap**: Added missing content to empty core files `framework/planner/SYSTEM_PROMPT.md` and `framework/planner/guidelines.md`
+* **Planner system prompt**: Defined specialized agent role with context integration mandate and session-based workflow
+* **Planner guidelines**: Comprehensive formatting specifications for technical specifications and implementation plans with conditional sections and predefined commit patterns
+
+---
+
+## 1.0.0 – 2025-05-24
+
+### 🎉 Major Release: CodeCraft v1.0
+
+**Framework restructured for production use with improved terminology and simplified structure.**
+
+### Added
+* **Simplified directory structure**: Moved from `framework/runtime-llms/architect|builder/` to clean `framework/planner/` and `framework/coder/`
+* **Consolidated guidelines**: Single `framework/planner/guidelines.md` containing both spec and plan generation
+* **New QUICKSTART.md**: Complete rewrite with 4-step workflow for 2-minute setup
+* **Engineer workflow guide**: Comprehensive `guides/engineer-workflow.md` with step-by-step instructions
+* **Combined workflow template**: Single LLM option for simpler projects
+
+### Changed
+* **Role terminology**: Architect → Planner, Builder → Coder throughout framework
+* **System prompts**: Updated to use Planner/Coder terminology and correct paths
+* **Directory organization**: Moved templates, examples, guides to root level for easier access
+* **Documentation**: All guides, templates, and examples updated with consistent terminology
+* **Path references**: Updated all framework paths to use new simplified structure
+
+### Removed
+* **runtime-llms directory**: Eliminated confusing nested structure
+* **Duplicate documentation**: Cleaned up inconsistent and outdated guides
+* **Old terminology**: Removed all Architect/Builder references
+
+### Fixed
+* **Structural inconsistencies**: All path references now align with actual directory structure
+* **Terminology mismatches**: Consistent Planner/Coder usage throughout
+* **Outdated documentation**: Removed and replaced obsolete guides and quickstarts
+
+---
+
+## 0.8.0 – 2025-05-24
+
+### Fixed
+* **framework structure alignment**: updated all path references in engineer guide to match current directory structure (`framework/runtime-llms/architect|builder/`)
+* **role terminology consistency**: standardized all references to use "Architect" and "Builder" (removed GeneratorLLM/ExecutorLLM inconsistency)
+* **workflow gaps**: removed JSON schema dependencies, replaced with markdown format specifications throughout
+* **missing QUICKSTART.md**: created comprehensive quickstart guide with step-by-step workflow
+
+### Changed
+* **system prompts**: updated to use "Architect"/"Builder" terminology and expect markdown input/output
+* **guidelines**: replaced JSON schemas with markdown format specifications for tech specs and implementation plans
+* **templates**: updated all prompt templates to reference correct paths and use proper role terminology
+* **protocol**: simplified builder protocol to work with markdown plans instead of JSON
+
+### Removed
+* **JSON schemas**: deleted all schema files (`tech-spec.schema.json`, `impl-plan.schema.json`, `commit-object.schema.json`)
+* **FrameworkLLM references**: removed mentions of non-existent coordination component
+* **shared/schemas directory**: cleaned up unused schema infrastructure
+
+## 0.7.0 – 2024-12-09
+
+# changelog
+## 0.6.0 – 2024-12-08
+
+* removed all static documentation tooling (`docs-site/`, `.docs/`, mkdocs files, pnpm config)
+## 0.5.4 – 2024-12-07
+
+* moved `.npmrc` into `docs-site/` to localise pnpm config
+## 0.5.3 – 2024-12-06
+
+* switched docs-site config to **preset-classic** with docs module
+* excluded `**/templates/**` markdown that breaks MDX parsing
+## 0.5.2 – 2024-12-05
+
+* added `@docusaurus/plugin-content-docs` to docs-site dependencies so dev server starts without manual install
+## 0.5.1 – 2024-12-04
+
+* switched documentation tooling to **pnpm** (`packageManager` set, added `.npmrc`)
+## 0.5.0 – 2024-12-03
+
+* replaced mkdocs setup with **Docusaurus v3** (`docs-site/` scaffold)
+* no file duplication; markdown stays in place
+* removed `.docs` directory and reverted related changes
+## 0.4.2 – 2024-12-02
+
+* fixed `.docs` configuration: added empty `docs/` directory inside `.docs` to satisfy mkdocs
+* renamed root directory to `llm-dev-pipeline-v4.2` to match version
+## 0.4.1 – 2024-12-01
+
+* switched to mkdocs-monorepo plugin; doc config relocated to `.docs/mkdocs.yml`
+* removed duplicate `docs/` directory
+## 0.4.0 – 2024-11-30
+
+* introduced `agents/` alias for naming consistency
+* added mkdocs for docs discoverability
+* added evaluation harness (`scripts/eval`)
+* enriched example project with full commit object
+* added contribution and release notes templates
+* documented framework‑llm state machine and retry strategy
+## 0.3.1 – 2024-11-29
+
+* updated content of `framework-llm/framework-llm-collaboration-guide.md`
+
+## 0.3.0 – 2024-11-28
+
+* drafted generatorllm and executorllm guides
+* completed tech-spec generation guidelines
+* added verification checklist generation prompt
+* added placeholder content for example artifacts
+* marked all TODO-LIST tasks as completed
+
+## 0.2.0 – 2024-11-27
+
+* added json schemas for core artifacts
+* added system prompts for ExecutorLLM and GeneratorLLM
+* documented 32k token budget and chunking strategy
+* defined error handling protocol
+* added link‑integrity CI script
+</file>
+
+<file path="CONTRIBUTING.md">
+# Contributing
+
+## Development workflow
+
+1. **Fork and clone** the repository
+2. **Create feature branch** from `main`
+3. **Make changes** following project conventions
+4. **Test changes** with example workflows
+5. **Submit pull request** with clear description
+
+## Style requirements
+
+- **Case**: Sentence case for all headings and text (per `framework/global-llm-rules.md`)
+- **Language**: Minimal, concise, technical
+- **Paths**: Relative to project root
+- **Placeholders**: Clear, bracketed format `[description]`
+
+## Release process
+
+1. Update `CHANGELOG.md` with current date (YYYY-MM-DD format)
+2. Use semantic versioning: patch (0.0.X) for fixes, minor (0.X.0) for new features, major (X.0.0) for breaking changes
+3. Commit with message `chore(release): vX.Y.Z`
+</file>
+
+<file path="QUICKSTART.md">
+# CodeCraft quickstart
+
+**Get productive with CodeCraft in 2 minutes.** Embed structured LLM workflows into your existing projects for new features, bug fixes, or refactoring.
+
+## What is CodeCraft?
+
+CodeCraft is a framework for structured software development using LLMs. It uses two specialized agents:
+- **Planner:** Converts requirements → technical specifications → implementation plans
+- **Coder:** Executes implementation plans → verified code commits
+
+## Quick setup
+
+```bash
+# 1. Navigate to your existing project
+cd your-existing-project
+
+# 2. Clone CodeCraft and run setup
+git clone https://github.com/your-org/code-craft.git /tmp/code-craft
+/tmp/code-craft/setup.sh
+
+# 3. Start working
+cd codecraft
+```
+
+## 4-step workflow
+
+### 1. Requirements → Technical specification
+
+```bash
+# Load Planner
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
+
+# Provide context
+cat codecraft/framework/planner/guidelines.md
+cat codecraft/framework/global-llm-rules.md
+
+# Submit requirements → Save output as codecraft/01-specification/technical-specification.md
+```
+
+### 2. Technical specification → Implementation plan
+
+```bash
+# Continue with Planner or reload
+cat codecraft/01-specification/technical-specification.md
+
+# Ask Planner to generate implementation plan
+# Save output as codecraft/02-plan/implementation-plan.md
+```
+
+### 3. Implementation plan → Code
+
+```bash
+# Load Coder  
+cat codecraft/framework/coder/SYSTEM_PROMPT.md | pbcopy
+
+# Provide context
+cat codecraft/framework/coder/protocol.md
+cat codecraft/framework/global-llm-rules.md
+
+# Submit implementation plan
+cat codecraft/02-plan/implementation-plan.md
+
+# Coder executes tasks and commits changes
+```
+
+### 4. Verify and iterate
+
+```bash
+npm test     # Run tests
+git log      # Review commits
+npm start    # Test application
+```
+
+## Beginner option: Single LLM workflow
+
+For simple projects, use one Planner session for both specification and plan:
+
+```bash
+# Load combined workflow template
+cat codecraft/framework/planner/SYSTEM_PROMPT.md | pbcopy
+cat codecraft/templates/combined-workflow.md
+
+# Submit requirements → Get both spec and plan
+# Save spec to codecraft/01-specification/, plan to codecraft/02-plan/
+# Proceed to step 3 (Coder)
+```
+
+## Examples to try
+
+**Starter projects:**
+- `examples/counter-app/` - Simple interactive component  
+- `examples/todo-app/` - Full web application with CRUD
+
+**Templates:**
+- `codecraft/templates/input-requirements.md` - How to format requirements
+- `codecraft/templates/combined-workflow.md` - Single LLM workflow
+
+## Need more detail?
+
+- **Full guide:** `codecraft/guides/engineer-workflow.md`
+- **Framework docs:** `codecraft/framework/` directory
+- **Troubleshooting:** Check examples for reference implementations
+
+---
+
+**Next:** Browse `codecraft/examples/` to see CodeCraft in action, or dive into `codecraft/guides/engineer-workflow.md` for comprehensive instructions.
+</file>
+
+<file path="README.md">
+# CodeCraft
+
+**Transform requirements into working software using structured LLM workflows.**
+
+CodeCraft is a framework for **AI-assisted software development** that uses specialized LLM agents to create structured, verifiable implementations.
+
+## Workflow
+
+1. **Specify** - Planner converts requirements → technical specifications  
+2. **Plan** - Planner creates detailed implementation steps
+3. **Execute** - Coder implements the code
+4. **Verify** - Test and validate the implementation
+
+## Quick start
+
+```bash
+# In your existing project directory
+git clone https://github.com/your-org/code-craft.git /tmp/code-craft
+/tmp/code-craft/setup.sh
+cd codecraft
+```
+
+See `QUICKSTART.md` for complete workflow instructions.
+
+## Directory structure
+
+```
+CodeCraft/
+├── framework/               # Core LLM agents
+│   ├── planner/            # Creates specifications and plans
+│   ├── coder/              # Implements plans and commits code
+│   └── global-llm-rules.md # Style and formatting rules
+├── templates/               # Prompt templates
+├── examples/                # Reference implementations  
+├── guides/                  # Detailed workflows
+└── QUICKSTART.md           # Get started quickly
+```
+
+## Key components
+
+- **Planner** - Creates specifications and plans from requirements
+- **Coder** - Implements plans and commits code changes
+- **Templates** - Starting prompts for different phases
+- **Examples** - Complete reference projects
+
+## Documentation
+
+- `QUICKSTART.md` - Get productive in 2 minutes
+- `guides/engineer-workflow.md` - Complete workflow guide
+- `examples/` - Reference implementations
+</file>
+
+<file path="RELEASE_NOTES_TEMPLATE.md">
+## X.Y.Z – YYYY‑MM‑DD
+
+### added
+* ...
+
+### changed
+* ...
+
+### fixed
+* ...
+</file>
+
+<file path="setup.sh">
+#!/bin/bash
+
+# CodeCraft setup script
+# Copies essential framework files into existing project
+
+set -e
+
+# Default target directory
+TARGET_DIR="codecraft"
+
+# Parse arguments
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -d|--dir)
+      TARGET_DIR="$2"
+      shift 2
+      ;;
+    -h|--help)
+      echo "Usage: ./setup.sh [-d|--dir TARGET_DIR]"
+      echo "  -d, --dir    Target directory name (default: codecraft)"
+      echo "  -h, --help   Show this help message"
+      exit 0
+      ;;
+    *)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+  esac
+done
+
+# Get script directory (where CodeCraft is located)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo "Setting up CodeCraft in directory: $TARGET_DIR"
+
+# Create target directory
+mkdir -p "$TARGET_DIR"
+
+# Copy essential files and directories
+cp -r "$SCRIPT_DIR/framework" "$TARGET_DIR/"
+cp -r "$SCRIPT_DIR/templates" "$TARGET_DIR/"
+cp -r "$SCRIPT_DIR/guides" "$TARGET_DIR/"
+cp "$SCRIPT_DIR/QUICKSTART.md" "$TARGET_DIR/"
+
+# Create working directories
+mkdir -p "$TARGET_DIR/01-specification"
+mkdir -p "$TARGET_DIR/02-plan"
+mkdir -p "$TARGET_DIR/03-implementation"
+
+echo "✅ CodeCraft setup complete!"
+echo ""
+echo "Next steps:"
+echo "1. cd $TARGET_DIR"
+echo "2. Follow QUICKSTART.md for workflow instructions"
+echo "3. Start with your project requirements"
+</file>
+
+</files>

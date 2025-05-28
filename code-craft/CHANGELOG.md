@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0 – 2025-05-28
+- docs: refine README, quickstart, engineer workflow (dedup)
+
+---
+
 ## 1.1.2 – 2025-05-25
 
 ### Fixed
