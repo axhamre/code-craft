@@ -1,13 +1,13 @@
-# engineer workflow
+# Engineer workflow
 
 End-to-end guide.
 
-## prerequisites
+## Prerequisites
 - git  
 - LLM access (OpenAI, Anthropic, local)  
-- project toolchain (node, python, …)
+- Project toolchain (node, python, ...)
 
-## phase 1 specify
+## Phase 1 specify
 Input → requirements  
 Output → `01-specification/technical-specification.md`  
 Agent → planner
@@ -16,7 +16,7 @@ Agent → planner
 2. Provide `framework/global-llm-rules.md` + requirements.  
 3. Save spec.
 
-## phase 2 plan
+## Phase 2 plan
 Input → spec  
 Output → `02-plan/implementation-plan.md`  
 Agent → planner
@@ -25,7 +25,7 @@ Agent → planner
 2. Provide spec.  
 3. Commit the plan.
 
-## phase 3 execute
+## Phase 3 execute
 Input → plan  
 Output → code commits  
 Agent → coder
@@ -34,12 +34,12 @@ Agent → coder
 2. Follow tasks.  
 3. Commit after each logical unit; update `CHANGELOG.md`.
 
-## phase 4 verify
+## Phase 4 verify
 Run tests.  
 Fix failures; iterate until green.
 
-## troubleshooting
-| symptom          | action                         |
+## Troubleshooting
+| Symptom          | Action                         |
 | ---------------- | ------------------------------ |
-| failing task     | inspect error, patch, update plan |
-| incomplete spec  | gather detail, regenerate spec & plan |
+| Failing task     | Inspect error, patch, update plan |
+| Incomplete spec  | Gather detail, regenerate spec & plan |

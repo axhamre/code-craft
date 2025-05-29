@@ -1,5 +1,10 @@
 # Changelog
 
+
+## 1.2.1 – 2025-05-29
+### Fixed
+* **Documentation**: Sentence casing and heading consistency in README, quickstart, and engineer workflow
+
 ## 1.2.0 – 2025-05-28
 - docs: refine README, quickstart, engineer workflow (dedup)
 
