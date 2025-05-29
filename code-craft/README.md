@@ -2,31 +2,27 @@
 
 Structured LLM‑assisted software delivery.
 
-## Installation
-Add CodeCraft to your local project:
+## Setup
 
-```bash
-mkdir code-craft-local && cd code-craft-local && git init && git remote add origin https://github.com/axhamre/code-craft.git && git sparse-checkout set --cone code-craft && git pull origin main && mv code-craft/* . && rm -rf code-craft .git && rm -f .gitignore
-```
+To integrate CodeCraft into your project, please follow the detailed instructions in our [Setup Guide](INSTALL.md).
 
-Run script to copy framework and templates
-
-```bash
-bash codecraft/setup.sh
-```
+For a detailed guide on the CodeCraft development process, see [WORKFLOW.md](WORKFLOW.md).
 
 ## Quick start
 
-1. **Specify** – turn requirements into a technical specification.  
-   • Copy `codecraft/framework/planner/SYSTEM_PROMPT.md` into your LLM together with project requirements.  
-   • Save the result as `01-specification/technical-specification.md`.
+The following steps outline the core CodeCraft workflow. Generated artifacts are typically stored in your `project-artifacts/` directory, as detailed in `INSTALL.md` and `WORKFLOW.md`.
 
-2. **Plan** – convert the specification into an implementation plan.  
-   • Copy `codecraft/framework/planner/PLAN_PROMPT.md` into the LLM with the specification.  
-   • Save as `02-plan/implementation-plan.md`.
+1. **Specify** – turn requirements into a technical specification.
+   • Start with your project requirements (e.g., in `project-artifacts/0-Requirements/project-requirements.md`).
+   • Use `codecraft/framework/planner/SYSTEM_PROMPT.md` with your LLM and the requirements.
+   • Save the result as `project-artifacts/1-Specification/technical-specification.md`.
 
-3. **Execute** – implement the plan.  
-   • Copy `codecraft/framework/coder/SYSTEM_PROMPT.md` into the LLM with the plan.  
+2. **Plan** – convert the specification into an implementation plan.
+   • Use `codecraft/templates/planning/implementation-plan-generation-prompt.md` (this is a template, see WORKFLOW.md for details) with your LLM and the specification.
+   • Save as `project-artifacts/2-ImplementationPlan/implementation-plan.md`.
+
+3. **Execute** – implement the plan.
+   • Use `codecraft/framework/coder/SYSTEM_PROMPT.md` with your LLM and the plan.
    • Follow tasks, commit each logical unit, update `CHANGELOG.md`.
 
 4. **Verify** – run automated tests (`npm test`, `pytest`, …).  
@@ -37,7 +33,4 @@ bash codecraft/setup.sh
 | ---- | ------- |
 | `codecraft/framework/` | system prompts and global rules |
 | `codecraft/templates/` | prompt templates |
-| `codecraft/guides/`    | in‑depth guides |
-| `codecraft/examples/`  | reference implementations |
-
-For detailed guidance see `codecraft/guides/engineer-workflow.md`.
+| `codecraft/examples/`  | reference implementations (for demonstration, not part of core setup) |

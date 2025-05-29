@@ -1,5 +1,16 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+- **Framework Clarity & Usability**: Major overhaul to improve ease of use for engineers.
+  - Simplified project setup: Introduced `INSTALL.md` with Git submodule instructions, removed `setup.sh`.
+  - Standardized directory structure: Artifacts now go into `project-artifacts/` with numbered phase subdirectories (e.g., `0-Requirements`, `1-Specification`).
+  - Improved documentation:
+    - Renamed `guides/engineer-workflow.md` to `WORKFLOW.md` (now in root) and significantly updated its content for clarity on inputs, actions, outputs, and purposes of each phase.
+    - Updated `README.md` to reflect new setup, workflow, and standardized paths. `README.md`'s "Quick start" is now consistent with `WORKFLOW.md`.
+  - Aligned `examples/project-artifacts-example/` with the new standardized structure.
+- **Documentation Consistency**: Corrected prompt paths in `WORKFLOW.md` and `README.md`. Clarified usage of `framework/` vs. `templates/` prompts.
 
 ## 1.2.1 – 2025-05-29
 ### Fixed
