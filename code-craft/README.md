@@ -1,4 +1,4 @@
-# codecraft
+# CodeCraft
 
 Structured LLM-assisted software delivery.
 

@@ -7,19 +7,19 @@ Bootstrap inside an existing Git repo.
 bash codecraft/setup.sh
 ```
 
-### 1 specify
+## 1. Specify
 Copy `framework/planner/SYSTEM_PROMPT.md` to an LLM with requirements.  
 Save output as `01-specification/technical-specification.md`.
 
-### 2 plan
+## 2. Plan
 Copy `framework/planner/PLAN_PROMPT.md` to the LLM with the spec.  
 Save as `02-plan/implementation-plan.md`.
 
-### 3 execute
+## 3. Execute
 Copy `framework/coder/SYSTEM_PROMPT.md` to the LLM with the plan.  
 Follow tasks, committing each logical unit and updating `CHANGELOG.md`.
 
-### 4 verify
+## 4. Verify
 Run project tests (`npm test`, `pytest`, ...).  
 Fix failures; repeat execute/verify until green.
 
